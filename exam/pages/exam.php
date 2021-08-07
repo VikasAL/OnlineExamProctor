@@ -13,17 +13,17 @@
 </style>
 
 <?php
-// $examId = $_GET['id'];
+$examId = $_GET['id'];
 
-//$selExam = $conn->query("SELECT * FROM exam_tbl WHERE ex_id='$examId' ")->fetch(PDO::FETCH_ASSOC);
-//$selExamTimeLimit = $selExam['ex_time_limit'];
-//$_SESSION['time'] = $selExamTimeLimit;
-//$exDisplayLimit = $selExam['ex_questlimit_display'];
-$examId = $_COOKIE['exId'];
+$selExam = $conn->query("SELECT * FROM exam_tbl WHERE ex_id='$examId' ")->fetch(PDO::FETCH_ASSOC);
+$selExamTimeLimit = $selExam['ex_time_limit'];
+$_SESSION['time'] = $selExamTimeLimit;
+$exDisplayLimit = $selExam['ex_questlimit_display'];
+// $examId = $_COOKIE['exId'];
 
-$selExam = $_SESSION['selExam'];
-$selExamTimeLimit = $_SESSION['time'];
-$exDisplayLimit = $_SESSION['limit'];
+// $selExam = $_SESSION['selExam'];
+// $selExamTimeLimit = $_SESSION['time'];
+// $exDisplayLimit = $_SESSION['limit'];
 
 ?>
 

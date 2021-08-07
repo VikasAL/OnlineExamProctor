@@ -133,21 +133,21 @@ function terms_changed(termsCheckBox) {
  function sessionFunction() {
    var id = sessionStorage.getItem('exam');
    document.cookie = "exId = "+ id;
-   <?php 
-        $examId = $_COOKIE['exId'];
-        $_SESSION['examId'] = $examId; 
+   
+        // $examId = $_GET['id'];
+        // $_SESSION['examId'] = $examId; 
 
-        $selExam = $conn->query("SELECT * FROM exam_tbl WHERE ex_id='$examId' ")->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['selExam'] = $selExam;
+        // $selExam = $conn->query("SELECT * FROM exam_tbl WHERE ex_id='$examId' ")->fetch(PDO::FETCH_ASSOC);
+        // $_SESSION['selExam'] = $selExam;
 
-        $selExamTimeLimit = $selExam['ex_time_limit'];
-        $_SESSION['time'] = $selExamTimeLimit;
+        // $selExamTimeLimit = $selExam['ex_time_limit'];
+        // $_SESSION['time'] = $selExamTimeLimit;
 
-        $exDisplayLimit = $selExam['ex_questlimit_display'];
-        $_SESSION['limit'] = $exDisplayLimit;
+        // $exDisplayLimit = $selExam['ex_questlimit_display'];
+        // $_SESSION['limit'] = $exDisplayLimit;
 
-    ?>
-   window.location.href="home.php?page=exam";
+   window.location.href="home.php?page=exam&id="+id;
    return false;
  }
 </script>
+ 
