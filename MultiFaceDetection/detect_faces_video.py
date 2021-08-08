@@ -49,7 +49,7 @@ while True:
 		cv2.putText(frame,"{:.2f}%".format(confidence * 100) , (startX, y),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
 		if i>0:
-			cv2.putText(frame, "Multiple Face Detected  ", (90, 130), cv2.FONT_HERSHEY_DUPLEX, 0.9, (0, 0, 0), 1)
+			cv2.putText(frame, "Multiple Face Detected  ", (90, 130), cv2.FONT_HERSHEY_DUPLEX, 0.9, (0, 0, 255), 1)
 		
 	cv2.imshow("Frame", frame)
 	key = cv2.waitKey(1) & 0xFF
