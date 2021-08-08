@@ -50,11 +50,6 @@ while True:
         text = "Looking center"
 
     h, w, c = frame.shape
-    #
-    # line1 = [int((w / 2)), 0, int((w / 2)), h]
-    # line2 = [0, int((h / 2)), w, int((h / 2))]
-    # all_lines = [line1, line2]  # 4 quad
-
 
     cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (0, 0, 0), 2)
 
@@ -62,31 +57,9 @@ while True:
     right_pupil = gaze.pupil_right_coords()
 
     if left_pupil is not None and right_pupil is not None:
-        # first_quad = [(597, 150), (702, 200)]  # Top-left, Bottom right - 1st quad
-        # first_quad = [(0, 150), (600, 200)]  # Top-right, Bottom right - 1st quad
-
+        
         center_x = int((left_pupil[0] + right_pupil[0]) / 2)
         center_y = int((left_pupil[1] + right_pupil[1]) / 2)
-
-        # if 625 < center_x < 650 and 200 < center_y < 210:
-        #     print("Looking at first quad", center_x, center_y)
-        #
-        #     data_list.append([left_pupil, right_pupil, "first"])
-        #     cv2.putText(frame, "You are looking on 1st grid", (90, 200), cv2.FONT_HERSHEY_DUPLEX, 0.9, (0, 0, 0), 1)
-        # elif 600 < center_x < 625 and 200 < center_y < 210:
-        #     print("Looking at second quad", center_x, center_y)
-        #     cv2.putText(frame, "You are looking on 2nd grid", (90, 200), cv2.FONT_HERSHEY_DUPLEX, 0.9, (0, 0, 0), 1)
-        #     data_list.append([left_pupil, right_pupil, "second"])
-        #
-        # elif 570 < center_x < 670 and 200 < center_y < 210:
-        #     print("Looking at third quad", center_x, center_y)
-        #     cv2.putText(frame, "You are looking on 2nd grid", (90, 200), cv2.FONT_HERSHEY_DUPLEX, 0.9, (0, 0, 0), 1)
-        #     data_list.append([left_pupil, right_pupil, "third"])
-        #
-        # else:
-        #     print("Looking at fourth quad", center_x, center_y)
-        #     cv2.putText(frame, "You are looking on 2nd grid", (90, 200), cv2.FONT_HERSHEY_DUPLEX, 0.9, (0, 0, 0), 1)
-        #     data_list.append([left_pupil, right_pupil, "fourth"])
 
         # Camera internals
         focal_length = size[1]
@@ -112,12 +85,6 @@ while True:
         (success, rotation_vector, translation_vector) = cv2.solvePnP(model_points, image_points,
                                                                       cam_matrix, dist_coeffs,
                                                                       flags=cv2.SOLVEPNP_ITERATIVE)
-
-        # print("Rotation Vector:\n {0}".format(rotation_vector))
-        # print("Translation Vector:\n {0}".format(translation_vector))
-
-        # Project a 3D point (0, 0, 1000.0) onto the image plane.
-        # We use this to draw a line sticking out of the nose
 
         (nose_end_point2D, jacobian) = cv2.projectPoints(np.array([(0.0, 0.0, 1000.0)]), rotation_vector,
                                                          translation_vector,
